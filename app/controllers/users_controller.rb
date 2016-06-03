@@ -8,11 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    unless current_user.admin?
-      unless @user == current_user
-        redirect_to :back, :alert => "Access denied."
-      end
-    end
+    @spaces = @user.spaces
   end
 
   def update
@@ -41,5 +37,3 @@ class UsersController < ApplicationController
   def secure_params
     params.require(:user).permit(:role)
   end
-
-end

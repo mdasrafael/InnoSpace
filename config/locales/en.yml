@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      space:
+        photos: ""
+    errors:
+      models:
+        space:
+          attributes:
+            photos:
+              blank: "You have to upload at least one photo for your space."

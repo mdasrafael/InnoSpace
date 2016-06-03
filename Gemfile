@@ -6,6 +6,21 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
+
+gem 'figaro'
+gem 'toastr-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'paperclip'
+gem 'geocoder'
+gem 'jquery-ui-rails'
+gem 'momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'ransack'
+gem "tabs_on_rails"
+gem 'stripe'
+
 group :development, :test do
   gem 'byebug'
 end

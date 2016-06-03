@@ -19,7 +19,7 @@ development:
   database: InnoSpace_development
   pool:     5
   username: InnoSpace
-  password:
+  password: pur324
   template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -47,7 +47,7 @@ test:
   database: InnoSpace_test
   pool:     5
   username: InnoSpace
-  password:
+  password: pur324
   template: template0
 
 production:
@@ -57,5 +57,5 @@ production:
   database: InnoSpace_production
   pool:     5
   username: InnoSpace
-  password:
+  password: pur324
   template: template0
