@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-3">
+    <ul class="sidebar-list">
+      <% if(current_user.role=="vendor") %>
+        <li class="sidebar-item"><%= link_to "Your Spaces", spaces_path, class: "sidebar-link active" %></li>
+        <li class="sidebar-item"><%= link_to "Your Bookings", your_bookings_path, class: "sidebar-link" %></li>
+      <% else %>
+        <li class="sidebar-item"><%= link_to "Your Events", your_events_path, class: "sidebar-link" %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-8">Spaces</div>
+          <div class="col-md-3">
+            <%= link_to "Create a new Space", new_space_path(), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <% @spaces.each do |space| %>
+          <div class="row">
+            <div class="col-md-2">
+              <%= image_tag space.photos[0].image.url(:thumb) if space.photos.length > 0 %>
+            </div>
+            <div class="col-md-7">
+              <h4><%= space.space_name %></h4>
+            </div>
+            <div class="col-md-3 right">
+              <%= link_to "Update", edit_space_path(space), class: "btn btn-primary" %>
+            </div>
+          </div>
+          <hr>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

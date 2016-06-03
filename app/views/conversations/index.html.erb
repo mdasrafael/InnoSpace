@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Your Conversations</div>
+      <div class="panel-body">
+        <div class="container">
+          <% @conversations.each do |conversation| %>
+            <% other = conversation.sender == current_user ? conversation.recipient : conversation.sender %>
+            <%= link_to conversation_messages_path(conversation) do %>
+              <div class="row conversation">
+                <div class="col-md-2">
+                  <div class="row text-center">
+                    <!--%= link_to user_path(conversation.sender) do %-->
+                    <%= image_tag avatar_url(other), class: "img-circle avatar-large" %>
+                    <!--% end%-->
+                  </div>
+                  <div class="row text-center">
+                    <%= conversation.sender.firstname %>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <%= conversation.messages.last.message_time %>
+                </div>
+                <div class="col-md-8">
+                  <%= conversation.messages.last.content %>
+                </div>
+              </div>
+            <% end %>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
+<!--
+    <h3>All Users</h3>
+    <% @users.each do |user| %>
+      <% if user != current_user %>
+        <%= user.firstname %>
+        <%= link_to "Send Message", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' %>
+      <% end %>
+      <br>
+    <% end %>
+-->
+  </div>
+</div>

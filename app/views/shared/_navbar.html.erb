@@ -1,0 +1,50 @@
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">InnoSpace</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<% if(!user_signed_in?) %>
+					<li><%= link_to 'Log In', new_user_session_path %></li>
+					<li><%= link_to 'Sign Up', new_user_registration_path %></li>
+				<% else %>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<%= image_tag current_user.avatar_url(:thumb), class: "img-circle avatar-small" %>&nbsp;>
+							<%= current_user.firstname %> <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<% if(current_user.role=="vendor") %>
+								<li><%= link_to "Your Spaces", spaces_path %></li>
+								<li><%= link_to "Your Bookings", your_bookings_path %></li>
+							<% else %>
+								<li><%= link_to "Your Events", your_events_path %></li>
+							<% end %>
+							<li><%= link_to "Your Conversations", conversations_path %></li>
+							<!--li><a href="#">Wish List</a></li-->
+							<li role="separator" class="divider"></li>
+							<li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+							<!--li><a href="#">Account Setting</a></li-->
+							<li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/conversations"><i class="fa fa-envelope-o"></i> Messages</a>
+					</li>
+					<li>
+						<a data-method="delete" href="/logout"><i class="fa fa-plug fa-lg"></i> Logout</a>
+					</li>
+				<% end %>
+
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>

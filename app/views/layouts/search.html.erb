@@ -1,0 +1,189 @@
+<div id="wrapper">
+
+  <div id="sidebar">
+    <div id="widget" class="sticky">
+
+    </div>
+  </div>
+
+  <div id="article">
+
+    <div class="row">
+      <%= search_form_for @search, url: search_path do |f| %>
+
+        <div class="row">
+          <div class="col-md-3">
+            <%= text_field_tag :start_date, params[:start_date], placeholder: "Start Date", class: "form-control" %>
+          </div>
+          <div class="col-md-3">
+            <%= text_field_tag :end_date, params[:end_date], placeholder: "End Date", class: "form-control" %>
+          </div>
+          <div class="col-md-3">
+            <%= f.text_field :price_gteq, placeholder: "Min Price", class: "form-control" %>
+          </div>
+          <div class="col-md-3">
+            <%= f.text_field :price_lteq, placeholder: "Max Price", class: "form-control" %>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Art Gallery" %> Art Gallery
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Auditorium" %> Auditorium
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Bar" %> Bar
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Cafe" %> Cafe
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Classroom" %> Classroom
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Conference Hal" %> Conference Hall
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Hotel" %> Hotel
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Meeting Room" %> Meeting Room
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Outdoor" %> Outdoor
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Pop-up Space" %> Pop-up Space
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Restaurant" %> Restaurant
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Rooftop" %> Rooftop
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Studio" %> Studio
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Unique Space" %> Unique Space
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Wedding Venue" %> Wedding Venue
+          </div>
+          <div class="col-md-3">
+            <%= check_box_tag "q[space_type_eq_any][]", "Yacht/Boat" %> Yacht/Boat
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-md-6 select">
+            <div class="form-group">
+              <label>Accomodation Type</label>
+              <%= f.select :accomodation_type_gteq, [["All","All"],["Standing","Standing"],["Sitting","Sitting"]], prompt: "Select...", class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-6 select">
+            <div class="form-group">
+              <label>Capacity</label>
+              <%= f.select :capacity_gteq, [["2-3","2-3"],["4-5","4-5"],["6-10","6-10"],["11-25","11-25"],["26-50","26-50"],["51-100","51-100"],["101-150","101-150"],["151-250","151-250"],["251-500","251-500"],["501-1000","501-1000"],[">1000",">1000"]], prompt: "select...", class: "from-control" %>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_air_eq]", true %> Air Conditioning
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_heating_eq]", true %> Heating
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_bar_eq]", true %> Bar Tab
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_bathroom_eq]", true %> Bathroom
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_projector_eq]", true %> Projector
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_sound_system_eq]", true %> Sound & Mic
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_stage_eq]", true %> Stage
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_podium_eq]", true %> Podium
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_wifi_eq]", true %> Wi-fi
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_catering_eq]", true %> Catering
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <%= f.submit "Search", class: "btn btn-primary" %>
+        </div>
+
+      <% end %>
+
+      <hr>
+
+      <div class="row">
+        <% @arrSpaces.each do |space| %>
+
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading preview">
+                <%= image_tag space.photos[0].image.url(:medium) if space.photos.length > 0 %>
+              </div>
+              <div class="panel-body">
+                <%= link_to space.space_name, space %>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  $(function(){
+    $("#start_date").datepicker({
+      dateFormat: 'dd-mm-yy',
+      minDate: 0,
+      maxDate: '3m',
+      onSelect: function(selected) {
+        $('#end_date').datepicker("option","minDate", selected);
+        $('#end_date').attr('disabled', false);
+      }
+    });
+  });
+  $(function(){
+    $("#end_date").datepicker({
+      dateFormat: 'dd-mm-yy',
+      minDate: 0,
+      maxDate: '3m',
+      onSelect: function(selected) {
+        $('#start_date').datepicker("option","maxDate", selected);
+      }
+    });
+  });
+</script>

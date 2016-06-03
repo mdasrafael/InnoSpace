@@ -1,0 +1,126 @@
+<div class="row">
+  <div class="col-md-3">
+    <ul class="sidebar-list">
+      <% if(current_user.role=="vendor") %>
+        <li class="sidebar-item"><%= link_to "Your Spaces", spaces_path, class: "sidebar-link" %></li>
+        <li class="sidebar-item"><%= link_to "Your Bookings", your_bookings_path, class: "sidebar-link" %></li>
+      <% else %>
+        <li class="sidebar-item"><%= link_to "Your Events", your_events_path, class: "sidebar-link active" %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-8">Your Events</div>
+          <div class="col-md-3">
+            <%= link_to "Find the perfect Space", search_path(), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <% @events.each do |event| %>
+          <div class="row">
+            <div class="col-md-1 center"></div>
+            <div class="col-md-2">
+              <div class="row text-left">
+                Space details:
+              </div>
+              <div class="row text-left">
+                <%= link_to space_path(event.space) do %>
+                  <%= image_tag event.space.photos[0].image.url(:thumb) %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row text-left"></div>
+              <h4><%= event.space.space_name %></h4>
+            </div>
+            <div class="col-md-3">
+              <div class="row text-center">
+                Vendor details:
+              </div>
+              <div class="row text-center">
+                <%= link_to user_path(event.space.user) do %>
+                  <%= image_tag avatar_url(event.space.user), class: "img-circle avatar-large" %>
+                <% end%>
+              </div>
+              <div class="row text-center">
+                <%= event.space.user.firstname %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1 center"></div>
+            <div class="col-md-2 center">
+              <div class="row">Starting date:</div>
+              <div class="row"><%= event.start_date.strftime('%v') %></div>
+            </div>
+            <div class="col-md-2 center">
+              <div class="row">Ending date:</div>
+              <div class="row"><%= event.end_date.strftime('%v') %></div>
+            </div>
+            <div class="col-md-2 center">
+              <div class="row">Total costs:</div>
+              <div class="row">HK$ <%= event.total %></div>
+            </div>
+            <% if event.canceled_at %>
+              <div class="col-md-4">
+                <div class="row">Status:</div>
+                <div class="row">Not available for this date.</div>
+              </div>
+            <% elsif !event.confirmed_at %>
+              <div class="col-md-4">
+                <div class="row">Status:</div>
+                <div class="row">Waiting Vendor confirmation...</div>
+              </div>
+            <% else %>
+              <% if !event.payment_status %>
+                <div class="col-md-5">
+                  <div class="row">
+                    Availability confirmed!
+                    Choose your payment method:
+                  </div>
+                  <div class="row">
+                    <%= link_to "Paypal", pay_booking_path(id: event.id, payment_method: "paypal"), method: :put, class: "btn btn-primary" %>
+                    <%= link_to "Credit Card", pay_booking_path(id: event.id, payment_method: "creditcard"), method: :put, class: "btn btn-primary" %>
+                  </div>
+                </div>
+                <!--div class="col-md-4 center">
+                </div-->
+              <% else %>
+                <div class="col-md-3 right">
+                  <h4>Payment confirmed!</h4>
+                </div>
+              <% end %>
+            <% end %>
+<!-- alternative design
+          <div class="row">
+            <div class="col-md-2">
+              <%= event.start_date.strftime('%v') %>
+            </div>
+            <div class="col-md-2">
+              <%= link_to space_path(event.space) do %>
+                <%= image_tag event.space.photos[0].image.url(:thumb) %>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <h4><%= event.space.space_name %></h4>
+            </div>
+            <div class="col-md-2">
+              <%= link_to user_path(event.space.user) do %>
+                <%= image_tag avatar_url(event.space.user), class: "img-circle avatar-medium" %>
+              <% end%>
+            </div>
+            <div class="col-md-2 right">
+              <h4>HK$ <%= event.total %></h4>
+            </div>
+-->
+          </div>
+          <hr>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

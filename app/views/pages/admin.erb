@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="Admin_Form">
+      <h1>Login</h1>
+      <%= form_for(:admin, :url => {:controller => 'pages', :action => 'admin'}) do |f| %>
+        <p> User:</br> <%= f.text_field :usr%> </p>
+        <p> Password:</br> <%= f.text_field :pwd%></p>
+        <%= f.submit :admin %>
+      <% end %>
+    </div>
+  </body>
+</html>
