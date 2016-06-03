@@ -7,6 +7,9 @@ Rails.application.routes.draw do
                                 :omniauth_callbacks => 'omniauth_callbacks',
                                 :registrations => 'registrations'
                               }
+  resources :users do
+    get 'users', :to => 'pages#main', :as => :user_root
+  end
 
   resources :users, only: [:show]
   resources :spaces

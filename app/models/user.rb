@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
+  mount_uploader :avatar, AvatarUploader
 
   def set_default_role
     self.role ||= :user
@@ -34,5 +35,4 @@ class User < ActiveRecord::Base
       end
     end
   end
-
 end

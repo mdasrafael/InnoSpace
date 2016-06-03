@@ -11,41 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520210813) do
+ActiveRecord::Schema.define(version: 20160603173932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "users", force: :cascade do |t|
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "avatar"
-    t.text     "description"
-    t.string   "phone_number"
-    t.string   "business_name"
-    t.string   "business_position"
-    t.string   "role"
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "provider"
-    t.string   "uid"
-  end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -62,8 +31,8 @@ ActiveRecord::Schema.define(version: 20160520210813) do
     t.datetime "canceled_at"
   end
 
-  add_index "bookings", ["space_id"], name: "index_bookings_on_space_id"
-  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
+  add_index "bookings", ["space_id"], name: "index_bookings_on_space_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -80,8 +49,8 @@ ActiveRecord::Schema.define(version: 20160520210813) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id"
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.integer  "space_id"
@@ -93,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160520210813) do
     t.datetime "image_updated_at"
   end
 
-  add_index "photos", ["space_id"], name: "index_photos_on_space_id"
+  add_index "photos", ["space_id"], name: "index_photos_on_space_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
     t.text     "comment"
@@ -104,8 +73,8 @@ ActiveRecord::Schema.define(version: 20160520210813) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "reviews", ["space_id"], name: "index_reviews_on_space_id"
-  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
+  add_index "reviews", ["space_id"], name: "index_reviews_on_space_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "spaces", force: :cascade do |t|
     t.string   "space_type"
@@ -133,5 +102,37 @@ ActiveRecord::Schema.define(version: 20160520210813) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "spaces", ["user_id"], name: "index_spaces_on_user_id"
+  add_index "spaces", ["user_id"], name: "index_spaces_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.text     "description"
+    t.string   "phone_number"
+    t.string   "business_name"
+    t.string   "business_position"
+    t.string   "role"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "avatar"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
 end

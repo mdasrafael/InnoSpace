@@ -42,7 +42,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :phone_number
       t.string   :provider
       t.string   :uid
-      t.string   :avatar
       t.text     :description
 
     end
