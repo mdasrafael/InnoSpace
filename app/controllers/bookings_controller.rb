@@ -30,7 +30,23 @@ class BookingsController < ApplicationController
       end
     end
 =end
+    space = Space.find(booking_params[:space_id])
 
+    if booking_params[:start_date].blank?
+      redirect_to space, alert: "Please inform a Start Date"
+      return false
+    elsif booking_params[:end_date].blank?
+      redirect_to space, alert: "Please inform an End Date"
+      return false
+    end
+
+    start_date = Date.parse(booking_params[:start_date])
+    end_date = Date.parse(booking_params[:end_date])
+
+    if start_date > end_date
+      redirect_to space, alert: "The {end_date} can't be earlier than the {start_date}"
+      return false
+    end
 
     @booking_params = booking_params.to_h
     @booking = current_user.bookings.create(@booking_params)

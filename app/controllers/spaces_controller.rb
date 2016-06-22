@@ -74,7 +74,7 @@ class SpacesController < ApplicationController
     end
 
     def space_params
-      params.require(:space).permit(:space_type,:accomodation_type,:capacity,:space_name,:summary,:address,:is_air,:is_heating,:is_bar,:is_bathroom,:is_projector,:is_sound_system,:is_stage,:is_podium,:is_wifi,:is_catering,:price,:active)
+      params.require(:space).permit(:space_type,:capacity,:space_name,:summary,:address,:is_air,:is_heating,:is_bar,:is_bathroom,:is_projector,:is_sound_system,:is_stage,:is_podium,:is_wifi,:is_catering,:price,:active)
     end
 
     def save_my_previous_url

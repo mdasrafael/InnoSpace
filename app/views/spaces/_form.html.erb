@@ -8,21 +8,22 @@
       <%= form_for @space, html: {multipart: true} do |f| %>
 
         <div class="row">
-          <div class="col-md-4 select">
+          <div class="col-md-6 select">
             <div class="form-group">
               <label>Space Type</label>
               <%= f.select :space_type, [["Art Gallery","Art Gallery"],["Auditorium","Auditorium"],["Bar","Bar"],["Cafe","Cafe"],["Classroom","Classroom"],["Conference Hall","Conference Hall"],["Hotel","Hotel"],["Meeting Room","Meeting Room"],["Outdoor","Outdoor"],["Pop-up Space","Pop-up Space"],["Restaurant","Restaurant"],["Rooftop","Rooftop"],["Studio","Studio"],["Unique Space","Unique Space"],["Wedding Venue","Wedding Venue"],["Yacht/Boat","Yacht/Boat"]], id: "space_type", prompt: "Select...", class: "form-control" %>
             </div>
           </div>
 
-          <div class="col-md-4 select">
+              <!--  TO REMOVE -->
+          <!--div class="col-md-4 select">
             <div class="form-group">
               <label>Accomodation Type</label>
               <%= f.select :accomodation_type, [["All","All"],["Standing","Standing"],["Sitting","Sitting"]], id: "accomodation_type", prompt: "Select...", class: "form-control" %>
             </div>
-          </div>
+          </div-->
 
-          <div class="col-md-4 select">
+          <div class="col-md-6 select">
             <div class="form-group">
               <label>Capacity</label>
               <%= f.select :capacity, [["2-3","2-3"],["4-5","4-5"],["6-10","6-10"],["11-25","11-25"],["26-50","26-50"],["51-100","51-100"],["101-150","101-150"],["151-250","151-250"],["251-500","251-500"],["501-1000","501-1000"],[">1000",">1000"]], id: "capacity", prompt: "Select...", class: "form-control" %>
@@ -51,6 +52,9 @@
           </div>
         </div>
 
+        <div class="row">
+          <label>Amenities</label>
+        </div>
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
@@ -100,9 +104,9 @@
         </div>
 
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="form-group">
-              <label>Price</label>
+              <label>Minimum Spend / Average Price (3 hours)</label>
               <div class="input-group">
                 <div class="input-group-addon">HK$</div>
                 <%= f.text_field :price, placeholder: "eg. HK$ 1000", class: "form-control" %>
@@ -126,7 +130,7 @@
 
         <div class="row">
           <div class="form-group">
-              <%= f.check_box :active %> Active
+              <%= f.check_box :active, {checked: true}%> Active
           </div>
         </div>
 

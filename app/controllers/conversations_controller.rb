@@ -4,6 +4,12 @@ class ConversationsController < ApplicationController
   def index
     @users = User.all
     @conversations = Conversation.involving(current_user)
+    @conversations.each do |conversation|
+      if !conversation.messages.last
+        conversation.destroy
+      end
+    end
+    @conversations = Conversation.involving(current_user)
   end
 
   def create
@@ -14,6 +20,10 @@ class ConversationsController < ApplicationController
     end
 
     redirect_to conversation_messages_path(@conversation)
+  end
+
+  def destroy
+    @conversation.destroy
   end
 
   private

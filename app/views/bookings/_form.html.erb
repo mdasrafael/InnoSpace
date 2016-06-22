@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12 price_tag">
       <span>HK$<%= @space.price %></span>
-      <span class="pull-right">Per Day</span>
+      <span class="pull-right">Per Event</span>
     </div>
   </div>
 
@@ -54,7 +54,7 @@
     </div>
 
     <div class="row">
-      <%= f.submit "Book", style: "white-space: normal", id: "btn_book", class: "btn btn-book wide", disabled: 'true' %>
+      <%= f.submit "Book", style: "white-space: normal", id: "btn_book", class: "btn btn-book wide" %>
     <!-- OLD
       <div class="col-md-6">
         <%= f.submit "Book with Paypal", name: "payment_method", style: "white-space: normal", id: "btn_book_paypal", class: "btn btn-book wide", disabled: 'true' %>
@@ -108,13 +108,12 @@
 <% end %>
 
 <script type="text/javascript">
-    $("#end_date").on("dp.change", function (e) {
-        $('#start_date').data("DateTimePicker").minDate(e.date);
-    });
-    $("#start_date").on("dp.change", function (e) {
-        $('#end_date').data("DateTimePicker").maxDate(e.date);
-    });
-
+  $("#end_date").on("dp.change", function (e) {
+      $('#start_date').data("DateTimePicker").minDate(e.date);
+  });
+  $("#start_date").on("dp.change", function (e) {
+      $('#end_date').data("DateTimePicker").maxDate(e.date);
+  });
 </script>
 
 <!--
