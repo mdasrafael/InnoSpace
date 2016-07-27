@@ -9,7 +9,6 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'figaro'
 gem 'toastr-rails'
-gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
@@ -23,7 +22,6 @@ gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: '
 gem 'ransack'
 gem "tabs_on_rails"
 gem 'stripe'
-gem 'bourbon'
 
 group :development, :test do
   gem 'byebug'
@@ -32,6 +30,7 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'devise'
 gem 'administrate'
 gem 'bootstrap-sass'
 gem 'high_voltage'

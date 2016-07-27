@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
 
-
   def main
     @spaces = Space.all
   end
