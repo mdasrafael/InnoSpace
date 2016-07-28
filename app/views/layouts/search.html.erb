@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper"> 
 
   <div id="sidebar">
     <div id="widget" class="sticky">
@@ -10,6 +10,14 @@
 
     <div class="row">
       <%= search_form_for @search, url: search_path do |f| %>
+
+        <div class="row">
+          <div class="col-md-12">
+            <%= text_field_tag :search, params[:Search], placeholder: "Where you want to do your event?", class: "form-control" %>
+            </div>
+        </div>
+
+        <hr>
 
         <div class="row">
           <div class="col-md-3">
@@ -89,7 +97,7 @@
               <%= f.select :accomodation_type_gteq, [["All","All"],["Standing","Standing"],["Sitting","Sitting"]], prompt: "Select...", class: "form-control" %>
             </div>
           </div-->
-          <div class="col-md-6 select">
+          <div class="col-md-12 select">
             <div class="form-group">
               <label>Capacity</label>
               <%= f.select :capacity_gteq, [["2-3","2-3"],["4-5","4-5"],["6-10","6-10"],["11-25","11-25"],["26-50","26-50"],["51-100","51-100"],["101-150","101-150"],["151-250","151-250"],["251-500","251-500"],["501-1000","501-1000"],[">1000",">1000"]], prompt: "select...", class: "from-control" %>

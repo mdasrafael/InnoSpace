@@ -12,6 +12,27 @@
       <%= search_form_for @search, url: search_path do |f| %>
 
         <div class="row">
+          <div class="col-md-12">
+            <label>Location</label>
+          </div> 
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= text_field_tag :search, params[:Search], placeholder: "Where you want to do your event?", class: "form-control" %>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label>Date</label>
+          </div>          
+          <div class="col-md-6">
+            <label>Price</label>          
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-3">
             <%= f.datetime_select :bookings_start_date, params[:bookings_start_date], placeholder: 'Start Date', class: "form-control" %>
           </div>
@@ -28,6 +49,11 @@
 
         <hr>
 
+        <div class="row">
+          <div class="col-md-12">
+            <label>Space Type</label>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-3">
             <%= check_box_tag "q[space_type_eq_any][]", "Art Gallery" %> Art Gallery
@@ -82,23 +108,23 @@
         <hr>
 
         <div class="row">
-              <!--  TO REMOVE -->
-          <!--div class="col-md-6 select">
-            <div class="form-group">
-              <label>Accomodation Type</label>
-              <%= f.select :accomodation_type_gteq, [["All","All"],["Standing","Standing"],["Sitting","Sitting"]], prompt: "Select...", class: "form-control" %>
-            </div>
-          </div-->
-          <div class="col-md-6 select">
-            <div class="form-group">
-              <label>Capacity</label>
-              <%= f.select :capacity_gteq, [["2-3","2-3"],["4-5","4-5"],["6-10","6-10"],["11-25","11-25"],["26-50","26-50"],["51-100","51-100"],["101-150","101-150"],["151-250","151-250"],["251-500","251-500"],["501-1000","501-1000"],[">1000",">1000"]], prompt: "select...", class: "from-control" %>
-            </div>
+          <div class="col-md-12">
+            <label>Capacity</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 select">
+            <%= f.select :capacity_gteq, [["2-3","2-3"],["4-5","4-5"],["6-10","6-10"],["11-25","11-25"],["26-50","26-50"],["51-100","51-100"],["101-150","101-150"],["151-250","151-250"],["251-500","251-500"],["501-1000","501-1000"],[">1000",">1000"]], prompt: "select...", class: "from-control" %>
           </div>
         </div>
 
         <hr>
 
+        <div class="row">
+          <div class="col-md-12">
+            <label>Amenities</label>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-4">
             <%= check_box_tag "q[is_air_eq]", true %> Air Conditioning
@@ -141,6 +167,12 @@
       <% end %>
 
       <hr>
+
+      <div class="row">
+        <div class="col-md-12">
+          <label>Results (<%=  @arrSpaces.length %>)</label>
+        </div> 
+      </div>
 
       <div class="row">
         <% @arrSpaces.each do |space| %>
