@@ -1,13 +1,13 @@
-<%= form_tag search_path, method: :get do %>
+<%= form_tag search_path, method: :get do |f|%>
   <div class="row">
     <div class="col-md-6">
-      <%= text_field_tag :search, params[:Search], placeholder: "Where you want to do your event?", class: "form-control" %>
+      <%= text_field_tag :search, params[:search], placeholder: "Where you want to do your event?", class: "form-control" %>
     </div>
     <div class="col-md-2">
-      <%= text_field_tag :start_date, params[:start_date], placeholder: "Start Date?", class: "form-control" %>
+      <%= text_field_tag :start_date, params[:start_date], placeholder: "Start Date", class: "form-control" %>
       </div>
     <div class="col-md-2">
-      <%= text_field_tag :end_date, params[:end_date], placeholder: "End Date?", class: "form-control" %>
+      <%= text_field_tag :end_date, params[:end_date], placeholder: "End Date", class: "form-control" %>
       </div>
     <div class="col-md-2">
       <!-- adicionei essa linha para limpar o local ou data da busca -->
@@ -23,7 +23,7 @@
 <div class="row">
   <% @spaces.each do |space| %>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading preview">
           <%= image_tag space.photos[0].image.url(:medium) if space.photos.length > 0 %>

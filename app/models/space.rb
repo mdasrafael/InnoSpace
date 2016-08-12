@@ -8,8 +8,6 @@ class Space < ActiveRecord::Base
   after_validation :geocode, if: :address_changed?
 
   validates :space_type, presence: true
-  # TO REMOVE
-#  validates :accomodation_type, presence: true
   validates :capacity, presence: true
   validates :space_name, presence: true, length: {maximum: 100}
   validates :summary, presence: true, length: {maximum: 500}

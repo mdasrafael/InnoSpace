@@ -6,13 +6,13 @@ class PagesController < ApplicationController
 
   def search
     if params[:search].present? && params[:search].strip != ""
-      session[:address_search] = params[:search]
+      session[:loc_search] = params[:search]
     end
 
     arrResult = Array.new
 
-    if session[:address_search] && session[:address_search] != ""
-      @spaces_address = Space.where(active: true).near(session[:address_search], 5, order: 'distance')
+    if session[:loc_search] && session[:loc_search] != ""
+      @spaces_address = Space.where(active: true).near(session[:loc_search], 5, order: 'distance')
     else
       @spaces_address = Space.where(active: true).all
     end
@@ -22,7 +22,7 @@ class PagesController < ApplicationController
 
     @arrSpaces = @spaces.to_a
 
-    if (params[:bookings_start_date] && params[:bookings_end_date] && !params[:bookings_start_date].empty? & !params[:bookings_end_date].empty?)
+    if (params[:bookings_start_date] && params[:bookings_end_date] && !params[:bookings_start_date].empty? && !params[:bookings_end_date].empty?)
 
       start_date = Date.parse(params[:bookings_start_date])
       end_date = Date.parse(params[:bookings_end_date])

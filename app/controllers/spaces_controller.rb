@@ -32,7 +32,7 @@ class SpacesController < ApplicationController
       end
 
       @photos = @space.photos
-      redirect_to edit_space_path(@space), notice: "Saved..."
+      redirect_to space_path(@space), notice: "Saved..."
     else
       flash[:error] = @space.errors.full_messages.join('. ')
       render :new
