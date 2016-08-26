@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-md-12 price_tag">
-      <span>HK$<%= @space.price %></span>
+      <span><%= number_to_currency(@space.price, unit: "HK$ ") %></span>
       <span class="pull-right">Per Event</span>
     </div>
   </div>
@@ -114,6 +114,18 @@
   $("#start_date").on("dp.change", function (e) {
       $('#end_date').data("DateTimePicker").maxDate(e.date);
   });
+
+  $(function() {
+    if ($('#booking_end_date')) {
+      $('#preview').show();
+      $('#btn_book').attr('disabled', false);
+
+      var total = days * <%= @space.price %>
+      $('#booking_days').text(days);
+      $('#booking_sum').text(total);
+      $('#booking_total').val(total);
+    }
+  }
 </script>
 
 <!--

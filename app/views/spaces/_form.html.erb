@@ -113,6 +113,11 @@
               </div>
             </div>
           </div>
+          <div class="col-md-6 text-center">
+            <label> </label>
+            <label> will be deducted Commissions & Fees:</label>
+            <label>(15% of the given price)</label>
+          </div>
         </div>
 
         <div id="photos"><%= render 'photos/list' %></div>
@@ -129,8 +134,10 @@
         </div>
 
         <div class="row">
-          <div class="form-group">
-              <%= f.check_box :active, {checked: true}%> Active
+          <div class="col-md-4">
+            <div class="form-group">
+                <%= f.check_box :active, {checked: true}%> Active
+            </div>
           </div>
         </div>
 
