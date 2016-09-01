@@ -25,7 +25,6 @@
 							<% if(current_user.role=="vendor") %>
 								<li><%= link_to "Your Spaces", spaces_path %></li>
 								<li><%= link_to "Your Bookings", your_bookings_path %></li>
-								<li><%= link_to "Your Events", your_events_path %></li>
 							<% else %>
 								<li><%= link_to "Your Events", your_events_path %></li>
 							<% end %>

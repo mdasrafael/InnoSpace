@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   def preload
     space = Space.find(params[:space_id])
     today = Date.today
-    bookings = space.bookings.where("start_date >= ? OR end_date >= ?", today, today)
+    bookings = space.bookings.where("start_date >= ? OR end_date >= ?", today, today).first
 
     render json: bookings
   end
@@ -162,7 +162,6 @@ class BookingsController < ApplicationController
   protect_from_forgery except: [:your_events]
   def your_events
     @events = current_user.bookings
-    #@events = current_user.bookings.where("payment_status = ?", true)
   end
 
   private

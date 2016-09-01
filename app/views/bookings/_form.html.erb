@@ -107,6 +107,7 @@
 
 <% end %>
 
+<!--
 <script type="text/javascript">
   $("#end_date").on("dp.change", function (e) {
       $('#start_date').data("DateTimePicker").minDate(e.date);
@@ -127,8 +128,11 @@
     }
   }
 </script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
 
-<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
 <script>
 
   function unavailable(date) {
@@ -151,102 +155,85 @@
           }
         });
 
-        $('#booking_start_date').datepicker({
-          dateFormat: 'dd-mm-yy',
-          minDate: 0,
-          maxDate: '3m',
-          beforeShowDay: unavailable,
-          onSelect: function(selected) {
-            $('#booking_end_date').datepicker("option", "minDate", selected);
-            $('#booking_end_date').attr("disabled", false);
+        $("#booking_start_date").on("dp.change", function (selectedDate) {
+          $('#booking_end_date').data("DateTimePicker").minDate(selectedDate.date);
+          var end_date = $('#booking_end_date').data("date");
+          var start_date = $("#booking_start_date").data("date");
+          var days = Math.round((Date.parse(end_date)-Date.parse(start_date))/(1000*60*60*24));
 
-            var start_date = $(this).datepicker('getDate');
-            var end_date = $('#booking_end_date').datepicker('getDate');
-            var days = (end_date - start_date)/1000/60/60/24 + 1;
-
-            var input = {
-              'start_date': start_date,
-              'end_date': end_date,
-              'space_id': <%= @space.id %>
-            }
-
-            $.ajax({
-              url: "/preview",
-              data: input,
-              success: function(data) {
-
-                if (data.conflict) {
-
-                  $('#message').text("This date range is not available.");
-                  $('#preview').hide();
-                  $('#btn_book_paypal').attr('disabled', true);
-                  $('#btn_book_stripe').attr('disabled', true);
-
-                } else {
-
-                  $('#preview').show();
-                  $('#btn_book_paypal').attr('disabled', false);
-                  $('#btn_book_stripe').attr('disabled', false);
-
-                  var total = days * <%= @space.price %>
-                  $('#booking_days').text(days);
-                  $('#booking_sum').text(total);
-                  $('#booking_total').val(total);
-                }
-              }
-            });
+          var input = {
+            'start_date': start_date.substring(0, 10),
+            'end_date': end_date.substring(0, 10),
+            'space_id': <%= @space.id %>
           }
+
+          $.ajax({
+            url: "/preview",
+            data: input,
+            success: function(data) {
+
+            /*if (data.conflict) {
+
+              $('#message').text("This date range is not available.");
+              $('#preview').hide();
+              $('#btn_book_paypal').attr('disabled', true);
+              $('#btn_book_stripe').attr('disabled', true);
+
+            } else {*/
+
+              $('#preview').show();
+              $('#btn_book_paypal').attr('disabled', false);
+              $('#btn_book_stripe').attr('disabled', false);
+
+              var total = days * <%= @space.price %>
+              $('#booking_days').text(days);
+              $('#booking_sum').text(total);
+              $('#booking_total').val(total);
+            }
+          });
         });
 
-        $('#booking_end_date').datepicker({
-          dateFormat: 'dd-mm-yy',
-          minDate: 0,
-          maxDate: '3m',
-          beforeShowDay: unavailable,
-          onSelect: function(selected) {
-            $('#booking_start_date').datepicker("option", "maxDate", selected);
+        $("#booking_end_date").on("dp.change", function (selectedDate) {
+          $('#booking_start_date').data("DateTimePicker").maxDate(selectedDate.date);
 
-            var start_date = $('#booking_start_date').datepicker('getDate');
-            var end_date = $(this).datepicker('getDate');
-            var days = (end_date - start_date)/1000/60/60/24 + 1;
+          var end_date = $('#booking_end_date').data("date");
+          var start_date = $("#booking_start_date").data("date");
+          var days = Math.round((Date.parse(end_date)-Date.parse(start_date))/(1000*60*60));
 
-            var input = {
-              'start_date': start_date,
-              'end_date': end_date,
-              'space_id': <%= @space.id %>
-            }
-
-            $.ajax({
-              url: "/preview",
-              data: input,
-              success: function(data) {
-
-                if (data.conflict) {
-
-                  $('#message').text("This date range is not available.");
-                  $('#preview').hide();
-                  $('#btn_book_paypal').attr('disabled', true);
-                  $('#btn_book_stripe').attr('disabled', true);
-                  $('#btn_book').attr('disabled', true);
-
-                } else {
-
-                  $('#preview').show();
-                  $('#btn_book_paypal').attr('disabled', false);
-                  $('#btn_book_stripe').attr('disabled', false);
-                  $('#btn_book').attr('disabled', false);
-
-                  var total = days * <%= @space.price %>
-                  $('#booking_days').text(days);
-                  $('#booking_sum').text(total);
-                  $('#booking_total').val(total);
-                }
-              }
-            });
+          var input = {
+            'start_date': start_date.substring(0, 10),
+            'end_date': end_date.substring(0, 10),
+            'space_id': <%= @space.id %>
           }
+
+          $.ajax({
+            url: "/preview",
+            data: input,
+            success: function(data) {
+
+            /*if (data.conflict) {
+
+              $('#message').text("This date range is not available.");
+              $('#preview').hide();
+              $('#btn_book_paypal').attr('disabled', true);
+              $('#btn_book_stripe').attr('disabled', true);
+              $('#btn_book').attr('disabled', true);
+
+            } else {*/
+
+              $('#preview').show();
+              $('#btn_book_paypal').attr('disabled', false);
+              $('#btn_book_stripe').attr('disabled', false);
+              $('#btn_book').attr('disabled', false);
+
+              var total = days * <%= @space.price %>
+              $('#booking_days').text(days);
+              $('#booking_sum').text(total);
+              $('#booking_total').val(total);
+            }
+          });
         });
       }
     });
   });
 </script>
--->

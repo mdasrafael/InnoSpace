@@ -54,12 +54,12 @@
                 <div class="row"><%= booking.start_date.strftime('%v') %></div>
               </div>
               <div class="col-md-2 center">
-                <div class="row">Ending date::</div>
-                <div class="row"><%= booking.end_date.strftime('%v') %>:</div>
+                <div class="row">Ending date:</div>
+                <div class="row"><%= booking.end_date.strftime('%v') %></div>
               </div>
               <div class="col-md-2 center">
                 <div class="row">Total earned::</div>
-                <div class="row">HK$ <%= booking.total %>:</div>
+                <div class="row" style = "font-weight: bold; color: red">HK$ <%= booking.total %></div>
               </div>
               <% if booking.canceled_at %>
                 <div class="col-md-4">
