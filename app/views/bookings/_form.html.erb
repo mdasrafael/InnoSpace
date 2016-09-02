@@ -159,7 +159,7 @@
           $('#booking_end_date').data("DateTimePicker").minDate(selectedDate.date);
           var end_date = $('#booking_end_date').data("date");
           var start_date = $("#booking_start_date").data("date");
-          var days = Math.round((Date.parse(end_date)-Date.parse(start_date))/(1000*60*60*24));
+          var days = 1+Math.round((Date.parse(end_date)-Date.parse(start_date))/(1000*60*60*24));
 
           var input = {
             'start_date': start_date.substring(0, 10),
@@ -198,7 +198,7 @@
 
           var end_date = $('#booking_end_date').data("date");
           var start_date = $("#booking_start_date").data("date");
-          var days = Math.round((Date.parse(end_date)-Date.parse(start_date))/(1000*60*60));
+          var days = 1+Math.round((Date.parse(end_date)-Date.parse(start_date))/(1000*60*60*24));
 
           var input = {
             'start_date': start_date.substring(0, 10),

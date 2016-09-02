@@ -97,8 +97,6 @@ class BookingsController < ApplicationController
 
   def pay
     @booking = Booking.find(params[:id])
-    @booking.update(:payment_method => params[:payment_method])
-    @booking.update(:payment_status => true)
 
     if params[:payment_method] == 'paypal'
       #send request to Paypal
@@ -108,14 +106,19 @@ class BookingsController < ApplicationController
         upload: 1,
         notify_url: 'http://innospace.asia/notify',
         amount: @booking.total,
+        currency_code: 'HKD',
         item_name: @booking.space.space_name,
         item_number: @booking.id,
         quantity: '1',
         return: 'http://innospace.asia/your_events'
       }
 
-      redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query, notice: "Your booking has been registered..."
+      redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query, notice: "Your booking has been paid..."
     end
+
+    @booking.update(:payment_method => params[:payment_method])
+    @booking.update(:payment_status => true)
+
   end
 
   def confirm
