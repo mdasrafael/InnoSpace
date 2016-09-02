@@ -106,12 +106,12 @@ class BookingsController < ApplicationController
         business: 'mdas.rafael-facilitator@gmail.com',
         cmd: '_xclick',
         upload: 1,
-        notify_url: 'http://322c2da9.ngrok.io/notify',
+        notify_url: 'http://innospace.asia/notify',
         amount: @booking.total,
         item_name: @booking.space.space_name,
         item_number: @booking.id,
         quantity: '1',
-        return: 'http://322c2da9.ngrok.io/your_events'
+        return: 'http://innospace.asia/your_events'
       }
 
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query, notice: "Your booking has been registered..."
