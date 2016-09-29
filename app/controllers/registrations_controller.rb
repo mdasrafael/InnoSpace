@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-    before_filter :configure_permitted_parameters
+  before_filter :configure_permitted_parameters
 
   protected
     def update_resource(resource, params)

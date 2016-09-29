@@ -68,13 +68,12 @@ class SpacesController < ApplicationController
       #@space = Space.find(params[:id])
       @space = Space.find_by(id: params[:id])
       if @space == nil
-        #flash[:error] = "This space dont't exist or isn't active anymore."
-        redirect_to save_my_previous_url, alert: "This space dont't exist or isn't active anymore."
+        raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
       end
     end
 
     def space_params
-      params.require(:space).permit(:space_type,:capacity,:space_name,:summary,:address,:is_air,:is_heating,:is_bar,:is_bathroom,:is_projector,:is_sound_system,:is_stage,:is_podium,:is_wifi,:is_catering,:price,:active)
+      params.require(:space).permit(:space_type,:capacity,:space_name,:summary,:address,:is_air,:is_heating,:is_bar,:is_bathroom,:is_projector,:is_sound_system,:is_stage,:is_podium,:is_wifi,:is_catering,:is_parking_lot,:is_car_stopping,:price,:active)
     end
 
     def save_my_previous_url

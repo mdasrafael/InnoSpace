@@ -45,4 +45,6 @@ Rails.application.routes.draw do
   put '/pay_booking' => 'bookings#pay'
 
   get '/' => 'landingpage#index'
+
+  get '*unmatched_route', to: 'application#raise_not_found'
 end

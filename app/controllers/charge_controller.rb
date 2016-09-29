@@ -1,4 +1,5 @@
 class ChargeController < ApplicationController
+  before_action :authenticate_user!, except: [:notify]
 
 def pay
   booking = Booking.find(params[:booking_id])

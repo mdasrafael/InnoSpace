@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: [:notify]
 
 def create
   @review = current_user.reviews.create(review_params)

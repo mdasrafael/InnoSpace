@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, except: [:notify]
+  before_action :authenticate_user!, except: [:your_bookings]
 
   def preload
     space = Space.find(params[:space_id])

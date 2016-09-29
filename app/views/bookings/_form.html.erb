@@ -199,6 +199,8 @@
           var end_date = $('#booking_end_date').data("date");
           var start_date = $("#booking_start_date").data("date");
           var days = 1+Math.round((Date.parse(end_date)-Date.parse(start_date))/(1000*60*60*24));
+          var hours = Math.round((Date.parse(end_date)-Date.parse(start_date))/(1000*60*60));
+          var time = days + ' days (' + hours + ' hours)'
 
           var input = {
             'start_date': start_date.substring(0, 10),
@@ -227,7 +229,7 @@
               $('#btn_book').attr('disabled', false);
 
               var total = days * <%= @space.price %>
-              $('#booking_days').text(days);
+              $('#booking_days').text(time);
               $('#booking_sum').text(total);
               $('#booking_total').val(total);
             }
