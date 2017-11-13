@@ -1,7 +1,7 @@
 Innospace
 ================
 
-Airbnb like App that allows users to rent venues for events developed in RoR and PostgreSQL.
+Airbnb like app that allows users to rent venues for events developed in RoR and PostgreSQL.
 
 Ruby on Rails
 -------------
